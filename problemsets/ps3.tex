@@ -1,0 +1,155 @@
+\documentclass[letterpaper,12pt,leqno]{article}
+\usepackage{paper,math,notes}
+\available{https://pascalmichaillat.org/x/}
+\hypersetup{pdftitle={Problem Set on Differential Equations}}
+
+\begin{document}
+
+\title{Problem Set on Differential Equations}
+\author{Pascal Michaillat}
+\date{}
+
+\begin{titlepage}
+\maketitle
+\end{titlepage}
+
+\section*{Problem 1}
+
+Find the solution of the initial value problem 
+\begin{align*}
+\dot{a}(t) &=r\cdot a(t) +s \\
+a\bp{0} &=a_{0}
+\end{align*}
+where both $r$ and $s$ are known constant.
+
+\section*{Problem 2}
+
+Find the solution of the initial value problem 
+\begin{align*}
+\dot{a}(t) &=r(t)\cdot a(t) +s(t) \\
+a\bp{0} &=a_{0}
+\end{align*}
+where both  $r(t)$ and $s(t)$ are known functions of $t.$
+
+\section*{Problem 3}
+
+Consider the linear system of differential equations given by
+\begin{equation*}
+\bm{\dot{x}}(t)=\bs{
+\begin{array}{ll}
+1 & 1 \\ 
+4 & 1
+\end{array}} \bm{x}(t).
+\end{equation*}
+\begin{enumerate}
+\item Find the general solution of the system.
+\item What would you need to find a specific solution of the system?
+\item Draw the trajectories of the system.
+\end{enumerate}
+
+\section*{Problem 4}
+
+Consider the initial value problem 
+\begin{align*}
+\dot{k}(t) &=s\cdot f\bp{k(t)} -\d\cdot  k(t) \\
+k\bp{0} &=k_{0}
+\end{align*}
+where the saving rate $s\in \bp{0,1} $, the capital depreciation rate $\d \in \bp{0,1}$, and the production function $f$ satisfies the \textit{Inada conditions}. That is, $f$ is continuously differentiable and 
+\begin{align*}
+f(0)&=0\\
+f'(x)&>0\\
+f''(x)&<0\\
+\lim_{x\to 0} f'(x)&=+\infty\\
+\lim_{x\to +\infty} f'(x)&=0.
+\end{align*}
+
+\begin{enumerate}
+\item Give a production function $f$ that satisfies the Inada conditions.
+\item Find the steady state of the system.
+\item Draw the dynamic path of $k(t) $ and show that it converges to the steady state.
+\end{enumerate}
+
+\section*{Problem 5}
+
+The solution of the problem studied in Problem 4 is characterized by a system of two nonlinear first-order differential equations:
+\begin{align*}
+\dot{k}_{t} &=f\bp{k_{t}} -c_{t}-\d \cdot k_{t}\\
+\frac{\dot{c}_{t}}{c_{t}} &=\a \cdot  A \cdot k_{t}^{\a -1}-\bp{\d +\rho}.
+\end{align*}
+The first differential equation is the law of motion of capital. The second differential equation is the Euler equation, which describes the optimal path of consumption over time.
+
+
+\begin{enumerate}
+\item Draw the phase diagram of the system.
+\item Linearize the system around its steady state.
+\item Show that the steady state is a saddle point  locally.
+\item Suppose the economy is in steady state at time $t_{0}$ and there is an unanticipated decrease in the discount factor $\rho$. Show on your phase diagram the transition dynamics of the model.
+\end{enumerate}
+
+\section*{Problem 6}
+
+The solution of the investment problem studied in Problem 5 is characterized by a system of two nonlinear first-order differential equations:
+\begin{align*}
+\dot{k}_{t} &=\bp{\frac{q_{t}-1}{\chi}}\cdot  k_{t} \\
+\dot{q}_{t} &=r\cdot q_{t}-f'\bp{k_{t}} -\frac{1}{2\cdot \chi}\bp{q_{t}-1}^{2}.
+\end{align*}
+The first differential equation is the law of motion of capital $k_{t}$. The second differential equation is the law of motion of the co-state variable $q_{t}$.
+
+\begin{enumerate}
+\item Draw the phase diagram.
+\item Show that the steady state is a saddle point locally.
+\end{enumerate}
+
+\section*{Problem 7}
+
+Consider a discrete time version of the typical growth model:
+\begin{align*}
+k(t+1) &=f\bp{k(t)} -c(t) +\bp{1-\d}\cdot  k(t) \\
+c(t+1) &=\b\cdot  \bs{ 1+f'\bp{k(t)} -\d }\cdot  c(t) .
+\end{align*} 
+The discount factor $\b \in \bp{0,1}$, the rate of depreciation of capital $\d \in \bp{0,1}$, initial capital $k_{0}$ is given, and the production function $f$ satisfies the Inada conditions. These two equations are a system of first-order difference equations. Whereas a system of first-order differential equations relates $\bm{\dot{x}}(t) $ to $\bm{x}(t)$, a system of first-order difference equations relate $\bm{x}(t+1) $ to $\bm{x}(t)$.
+
+We will see that we can study a system of first-order difference equations with the tools that we used to study systems of first-order differential equations. In particular, we can use phase diagrams to understand the dynamics of the system.
+
+\begin{enumerate}
+\item Construct a phase diagram for the system. First, define 
+\begin{align*}
+\D k & \equiv k(t+1) -k(t) , \\
+\D c & \equiv c(t+1) -c(t) .
+\end{align*}
+Second, draw the $\D k=0$ locus and the $\D c=0$ locus on the $(k,c)$ plane. Finally, find the steady state as the intersection of the $\D k=0$ locus and the $ \D c=0$ locus.
+\item Show that the steady state is a saddle point in the phase diagram.
+\end{enumerate}
+
+\section*{Problem 8}
+
+We consider the following optimal growth problem. Given initial human capital $h_{0}$ and initial physical capital $k_{0}$, choose consumption $c(t) $ and labor $l(t) $ to maximize utility
+\begin{equation*}
+\int_{0}^{\infty}e^{-\rho\cdot  t}\cdot \ln{c} dt
+\end{equation*}
+subject to
+\begin{align*}
+\dot{k}_{t} &=y_{t}-c_{t}-\d\cdot  k_{t} \\
+\dot{h}_{t} &=B\cdot \bp{1-l_{t}}\cdot  h_{t}.
+\end{align*}
+Output $y_{t}$ is defined by
+\[y_{t}\equiv A\cdot k_{t}^{\a}\cdot \bp{l_{t}\cdot h_{t}} ^{\b}.\]
+We also impose that $0 \leq l_{t}\leq 1$. The discount factor $\rho>0$, the rate of depreciation of physical capital $\d>0$, the constants $A>0$ and $B>0$, and the production function parameters $\a\in \bp{0,1}$ and $\b \in\bp{0,1}$.
+
+\begin{enumerate}
+\item Give state and control variables.
+\item Write down the present-value Hamiltonian for this problem.
+\item Derive the optimality conditions. 
+\item Show that the growth rate of consumption $c(t)$ is
+\begin{equation*}
+\frac{\dot{c}}{c}=\frac{\a\cdot  y}{k}-\bp{\d +\rho} .
+\end{equation*}
+\item From now on, we assume that $B=0$. Show that $l=1$.
+\item Draw the phase diagram in the $(k,c)$ plane.
+\item Show on the diagram that the steady state of the system is a saddle point.
+\item Derive the Jacobian of the system.
+\item Show that the steady state of the system is a saddle point.
+\end{enumerate}
+
+
+\end{document}

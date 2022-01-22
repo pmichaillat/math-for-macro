@@ -1,0 +1,76 @@
+\documentclass[letterpaper,12pt,leqno]{article}
+\usepackage{paper,math,notes}
+\available{https://pascalmichaillat.org/x/}
+\hypersetup{pdftitle={Problem Set on Mathematics for Macroeconomics}}
+
+\begin{document}
+
+\title{Problem Set on Mathematics for Macroeconomics}
+\author{Pascal Michaillat}
+\date{}
+
+\begin{titlepage}
+\maketitle
+\end{titlepage}
+
+\section*{Problem 1}
+
+Let $\a \in (0,1)$, $\d  \in (0,1)$, $\rho \in (0,1)$, and $\s>0$. Impose that $\rho+\d<1$. Given $k(0)$, we want to find the function $c(t) $ to maximize 
+\begin{equation*}
+\int_{0}^{+\infty }e^{-\rho\cdot  t}\cdot \frac{c(t)^{1-\s}-1}{1-\s} dt,
+\end{equation*}
+subject to the law of motion
+\begin{equation*}
+\dot{k}(t) =k(t)^{\a}-c(t)-\d \cdot k(t).
+\end{equation*}
+
+\begin{enumerate}
+
+\item  Which variable do you choose as a state variable? Which variable do you choose as a control variable? Write down the current-value Hamiltonian and derive the optimality conditions.
+
+\item The Euler equation is the first-order differential equation that characterizes the optimal function $c(t)$. Determine the Euler equation.
+
+\item  Suppose $\a =1$ and $\s =1$. Show that the system describing the optimal functions $\{k(t),c(t)\}$ reduces to a linear, homogenous system of first-order differential equations. Show that the system is unstable by computing the eigenvalues. 
+
+\item  Suppose $\a <1$ and $\s >0$. Show that the system describing the optimal functions $\{k(t),c(t)\}$ reduces to a nonlinear system of first-order differential equations. Use a phase-diagram to show that the steady state of the system is a saddle point. Explain how you draw the phase diagram.
+
+\end{enumerate}
+
+\section*{Problem 2}
+
+Let $\b \in (0,1)$ and $r>0$. Given $k_{0}>0$, we want to find a collection of sequences $\{c_{t},k_{t+1}\}_{t=0}^{+\infty}$ to maximize 
+\begin{equation*}
+\sum_{t=0}^{\infty }\b^{t} \cdot \ln(c_{t}), 
+\end{equation*}
+subject to the constraints
+\begin{equation*}
+k_{t+1}=(1+r)\cdot k_{t}-c_{t}
+\end{equation*}
+for all $t\geq 0$.
+
+\paragraph{Lagragian} We first solve the maximization problem using the Lagrangian method.
+
+\begin{enumerate}
+\item Write down the Lagrangian of the problem.
+\item Derive the first-order condition(s) of the maximization problem.
+\item Derive the Euler equation.
+\end{enumerate}
+
+\paragraph{Dynamic Programming} Next we solve the maximization problem using the dynamic programming method.
+
+\begin{enumerate}\setcounter{enumi}{3}
+
+\item Which variable do you choose as a state variable? Which variable do you choose as a control variable? Write down the Bellman equation.
+
+\item  Derive the first-order condition associated with the Bellman equation.
+
+\item  Derive the Benveniste-Scheinkman equation.
+
+\item  Derive the Euler equation. Compare it with the Euler equation obtained with the Lagrangian method and discuss.
+
+\item Suppose that the policy function takes the form $h(k)=A\cdot (1+r)\cdot k$ where $A\in (0,1) $. Derive $A$.
+
+\item  Suppose that the value function takes the form $V(k)=B+D\cdot \ln(k),$ where $B$ and $D$ are constants. Using the expression for the policy function that you derived in the previous question, derive $B$ and $D$.
+
+\end{enumerate}
+\end{document}

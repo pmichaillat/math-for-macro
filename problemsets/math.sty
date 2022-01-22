@@ -1,0 +1,212 @@
+% ---------- Brackets ----------
+
+\newcommand{\bc}[1]{\left\lbrace #1 \right\rbrace} 
+\newcommand{\bp}[1]{\left( #1 \right)} 
+\newcommand{\bs}[1]{\left[ #1 \right]} 
+\newcommand{\of}[1]{{\left( #1 \right)}} % Parentheses without surrounding space, for function arguments
+\newcommand{\abs}[1]{\left\lvert #1 \right\rvert}
+\newcommand{\norm}[1]{\left\lVert #1 \right\rVert}
+\newcommand{\floor}[1]{\left\lfloor #1 \right\rfloor}
+
+% ---------- Accents ----------
+
+\newcommand{\ol}[1]{\overline{#1}}
+\newcommand{\ul}[1]{\underline{#1}}
+\newcommand{\wh}[1]{\widehat{#1}}
+\newcommand{\wt}[1]{\widetilde{#1}}
+
+% ---------- Operators ----------
+
+\usepackage{xparse}
+
+% Natural log operator:
+% * \ln produces ln
+% * \ln{x} produces ln(x)
+\let\oldln\ln
+\RenewDocumentCommand{\ln}{g}{\IfNoValueTF{#1}{\oldln}{\,{\oldln}{\bp{#1}}}}
+
+% Exponential operator:
+% * \exp produces exp
+% * \exp{x} produces exp(x)
+\let\oldexp\exp
+\RenewDocumentCommand{\exp}{g}{\IfNoValueTF{#1}{\oldexp}{\,{\oldexp}{\bp{#1}}}}
+
+% Max operator:
+% * \max produces max
+% * \max[x] produces max_x
+% * \max{y} produces max{y}
+% * \max[x]{y} produces max_x{y}
+\let\oldmax\max
+\RenewDocumentCommand{\max}{o g}{%
+\IfNoValueTF{#2}{\oldmax\IfValueT{#1}{_{#1}}}%
+{\,{\oldmax\IfValueT{#1}{_{#1}}}{\bc{#2}}}}
+
+% Min operator:
+% * \min produces min
+% * \min[x] produces min_x
+% * \min{y} produces min{y}
+% * \min[x]{y} produces min_x{y}
+\let\oldmin\min
+\RenewDocumentCommand{\min}{o g}{%
+\IfNoValueTF{#2}{\oldmin\IfValueT{#1}{_{#1}}}%
+{\,{\oldmin\IfValueT{#1}{_{#1}}}{\bc{#2}}}}
+
+% Expectation operator:
+% * \E produces E
+% * \E[x] produces E_x
+% * \E{Y} produces E(Y)
+% * \E[x]{Y} produces E_x(Y)
+\NewDocumentCommand{\E}{o g}{%
+\IfNoValueTF{#2}{\operatorname{\mathbb{E}}\IfValueT{#1}{_{#1}}}%
+{\,\mathbb{E}\IfValueT{#1}{_{#1}}{\bp{#2}}}}
+
+ % Probability operator:
+ % * \P produces P
+ % * \P[x] produces P_x
+ % * \P{Y} produces P(Y)
+ % * \P[x]{Y} produces P_x(Y)
+\RenewDocumentCommand{\P}{o g}{%
+\IfNoValueTF{#2}{\operatorname{\mathbb{P}}\IfValueT{#1}{_{#1}}}%
+{\,\mathbb{P}\IfValueT{#1}{_{#1}}{\bp{#2}}}}
+
+% Indicator operator:
+% * \ind produces 1
+% * \ind{Y} produces 1(Y)
+\NewDocumentCommand{\ind}{g}{%
+\IfNoValueTF{#1}{\operatorname{\mathbb{1}}}%
+{\,\mathbb{1}{\bp{#1}}}}
+
+% Trace operator:
+% * \tr produces tr
+% * \tr{Y} produces tr(Y)
+\NewDocumentCommand{\tr}{g}{%
+\IfNoValueTF{#1}{\operatorname{tr}}%
+{\,{\operatorname{tr}}{\bp{#1}}}}
+
+% Variance operator:
+% * \var produces var
+% * \var{Y} produces var(Y)
+\NewDocumentCommand{\var}{g}{%
+\IfNoValueTF{#1}{\operatorname{var}}%
+{\,{\operatorname{var}}{\bp{#1}}}}
+
+% Covariance operator:
+% * \cov produces cov
+% * \cov{Y} produces cov(Y)
+\NewDocumentCommand{\cov}{g}{%
+\IfNoValueTF{#1}{\operatorname{cov}}%
+{\,{\operatorname{cov}}{\bp{#1}}}}
+
+% Correlation operator:
+% * \corr produces corr
+% * \corr{Y} produces corr(Y)
+\NewDocumentCommand{\corr}{g}{%
+\IfNoValueTF{#1}{\operatorname{corr}}%
+{\,{\operatorname{corr}}{\bp{#1}}}}
+
+% Standard deviation operator:
+% * \sd produces sd
+% * \sd{Y} produces sd(Y)
+\NewDocumentCommand{\sd}{g}{%
+\IfNoValueTF{#1}{\operatorname{sd}}%
+{\,{\operatorname{sd}}{\bp{#1}}}}
+
+% Standard error operator:
+% * \se produces se
+% * \se{Y} produces se(Y)
+\NewDocumentCommand{\se}{g}{%
+\IfNoValueTF{#1}{\operatorname{se}}%
+{\,{\operatorname{se}}{\bp{#1}}}}
+
+\DeclareMathOperator*{\argmax}{argmax}
+\DeclareMathOperator*{\argmin}{argmin}
+\DeclareMathOperator*{\ess}{ess}
+\renewcommand{\Re}{\operatorname{Re}}
+\renewcommand{\Im}{\operatorname{Im}}
+\newcommand{\iid}{\mathbin{\overset{iid}{\sim}}}
+\newcommand{\as}{\mathbin{\overset{as}{\to}}}
+
+% ---------- Derivatives ----------
+
+\newcommand{\pd}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\pdx}[2]{\partial #1/\partial #2}
+\newcommand{\od}[2]{\frac{d #1}{d #2}}
+\newcommand{\odx}[2]{d #1/d #2}
+\newcommand{\pdl}[2]{\frac{\partial\ln{#1}}{\partial\ln{#2}}}
+\newcommand{\pdlx}[2]{\partial\ln(#1)/\partial\ln(#2)}
+\newcommand{\odl}[2]{\frac{d\ln{#1}}{d\ln{#2}}}
+\newcommand{\odlx}[2]{d\ln(#1)/d\ln(#2)}
+\newcommand{\pdw}[3]{\left.\frac{\partial #1}{\partial #2}\right\vert_{#3}} 
+\newcommand{\pdwx}[3]{\left.\partial #1/\partial #2\right\vert_{#3}}
+
+% ---------- Blackboard letters ----------
+
+\def\R{\mathbb{R}}
+\def\N{\mathbb{N}}
+\def\Z{\mathbb{Z}}
+\def\Q{\mathbb{Q}}
+\def\C{\mathbb{C}}
+\def\I{\mathbb{I}}
+
+% ---------- Greek letters ----------
+
+\def\a{\alpha}
+\def\b{\beta}
+\def\c{\chi}
+\def\d{\delta}
+\def\D{\Delta}
+\def\e{\epsilon}
+\def\f{\phi}
+\def\vf{\varphi}
+\def\F{\Phi}
+\def\g{\gamma}
+\def\G{\Gamma}
+\def\h{\eta}
+\def\k{\kappa}
+\def\l{\lambda}
+\def\L{\Lambda}
+\def\m{\mu}
+\def\n{\nu}
+\def\o{\omega}
+\def\O{\Omega}
+\def\vp{\varpi}
+\def\p{\psi}
+\def\r{\rho}
+\def\s{\sigma}
+\def\vs{\varsigma}
+\def\S{\Sigma}
+\def\t{\theta}
+\def\T{\Theta}
+\def\vt{\vartheta}
+\def\x{\xi}
+\def\X{\Xi}
+\def\z{\zeta}
+
+% ---------- Caligraphic letters ----------
+
+\def\Ac{\mathcal{A}}
+\def\Bc{\mathcal{B}}
+\def\Cc{\mathcal{C}}
+\def\Dc{\mathcal{D}}
+\def\Ec{\mathcal{E}}
+\def\Fc{\mathcal{F}}
+\def\Gc{\mathcal{G}}
+\def\Hc{\mathcal{H}}
+\def\Ic{\mathcal{I}}
+\def\Jc{\mathcal{J}}
+\def\Kc{\mathcal{K}}
+\def\Lc{\mathcal{L}}
+\def\Mc{\mathcal{M}}
+\def\Nc{\mathcal{N}}
+\def\Oc{\mathcal{O}}
+\def\Pc{\mathcal{P}}
+\def\Qc{\mathcal{Q}}
+\def\Rc{\mathcal{R}}
+\def\Sc{\mathcal{S}}
+\def\Tc{\mathcal{T}}
+\def\Uc{\mathcal{U}}
+\def\Vc{\mathcal{V}}
+\def\Wc{\mathcal{W}}
+\def\Xc{\mathcal{X}}
+\def\Yc{\mathcal{Y}}
+\def\Zc{\mathcal{Z}}

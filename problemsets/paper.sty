@@ -1,0 +1,146 @@
+% ---------- Fonts ----------
+
+\usepackage{sourceserifpro}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath,amssymb,amsthm,eucal,bbold,bm}
+\usepackage[italic,eulergreek]{mathastext}
+
+\input{glyphtounicode}\pdfgentounicode=1
+
+% ---------- Spacing ----------
+
+\usepackage[onehalfspacing]{setspace}
+
+\renewcommand{\floatpagefraction}{0}
+\AtBeginDocument{\allowdisplaybreaks[1]}
+
+% ---------- General typography ----------
+
+\usepackage{microtype}
+\usepackage[x11names]{xcolor}
+\usepackage[hyphens]{url}
+\urlstyle{same}
+
+\usepackage{enumitem}
+\setlist[itemize,1]{leftmargin=\parindent,label=\color{gray}{\upshape\textbullet}}
+\setlist[itemize,2]{leftmargin=\parindent,label=\color{gray}{\upshape\textendash}}
+\setlist[enumerate,1]{leftmargin=2\parindent,label=\upshape(\roman*)}
+
+\AtBeginDocument{\frenchspacing}
+\MTsetmathskips{f}{\thinmuskip}{0mu} % Spacing around f in math
+\MTsetmathskips{y}{\thinmuskip}{0mu} % Spacing around y in math
+\MTsetmathskips{p}{\thinmuskip}{0mu} % Spacing around p in math
+\MTsetmathskips{l}{0mu}{\thinmuskip} % Spacing around l in math
+
+% ---------- Title page ----------
+
+\usepackage{titling}
+\pretitle{\begin{center}\bfseries\huge} 
+\renewcommand{\tamark}{}
+\setlength{\thanksmarkwidth}{0em}
+\setlength{\thanksmargin}{0em}
+
+\usepackage{etoolbox}
+\AtBeginEnvironment{titlepage}{\setlength{\parindent}{0pt}}
+
+% ---------- Headings ----------
+
+\usepackage{titlesec}
+\titleformat*{\section}{\centering\large\bfseries}
+\titleformat*{\subsection}{\bfseries}
+\titleformat{\paragraph}[runin]{\itshape}{}{}{}[.]
+\titlelabel{\thetitle.\quad}
+
+% ---------- Theorems + proofs ----------
+
+\newtheoremstyle{paper}{}{}{\itshape}{}{\scshape}{.}{.5em}{}
+\theoremstyle{paper}
+\newtheorem{theorem}{Theorem}
+\newtheorem{proposition}{Proposition}
+\newtheorem{lemma}{Lemma}
+\newtheorem{corollary}{Corollary}
+\newtheorem{definition}{Definition}
+\newtheorem{assumption}{Assumption}
+\newtheorem{remark}{Remark}
+
+\renewcommand{\proofname}{\upshape\scshape Proof}
+
+% ---------- Tables + figures ----------
+
+\usepackage{multirow,booktabs,rotating,graphicx}
+
+\makeatletter\g@addto@macro\@floatboxreset\centering\makeatother % Centered figures + tables
+\renewcommand{\figurename}{\textsc{Figure}}
+\renewcommand{\tablename}{\textsc{Table}}
+
+\BeforeBeginEnvironment{tabular*}{\footnotesize}
+\renewcommand{\arraystretch}{1.1}
+
+\usepackage{caption,subcaption}
+\captionsetup{labelsep=period}
+\captionsetup[sub]{labelformat=simple,labelsep=period,size=footnotesize}
+\captionsetup[table]{position=top}
+
+\renewcommand{\thesubfigure}{\Alph{subfigure}}
+\newcommand{\sfig}{0.2}
+\newcommand{\lfig}{0.3}
+\newcommand{\vfig}{\\\vspace*{0.4cm}}
+
+\newcommand{\note}[2][]{\parbox{\textwidth}{\footnotesize\vspace*{10pt}\textit{#1}#2}}
+
+% ---------- Bibliography ----------
+
+\AtBeginEnvironment{thebibliography}{\setstretch{1.1}}
+
+\usepackage{natbib}
+\setcitestyle{aysep={}}
+\renewcommand{\bibfont}{\small}
+\setlength{\bibsep}{0pt}
+\setlength{\bibhang}{1.5em}
+
+% ---------- Appendix ----------
+
+\AfterEndEnvironment{thebibliography}{
+\setcounter{theorem}{0}
+\setcounter{proposition}{0} 
+\setcounter{lemma}{0}
+\setcounter{corollary}{0}
+\setcounter{definition}{0}
+\setcounter{assumption}{0}
+\setcounter{remark}{0}
+\setcounter{table}{0}
+\setcounter{figure}{0}
+\setcounter{equation}{0} 
+\renewcommand{\thetheorem}{A\arabic{theorem}}
+\renewcommand{\theproposition}{A\arabic{proposition}}
+\renewcommand{\thelemma}{A\arabic{lemma}}
+\renewcommand{\thecorollary}{A\arabic{corollary}}
+\renewcommand{\thedefinition}{A\arabic{definition}}
+\renewcommand{\theassumption}{A\arabic{assumption}}
+\renewcommand{\theremark}{A\arabic{remark}}
+\renewcommand{\thetable}{A\arabic{table}}
+\renewcommand{\thefigure}{A\arabic{figure}}
+\renewcommand{\theequation}{A\arabic{equation}}
+\titleformat{\section}{\centering\large\bfseries}{Appendix~\thesection.}{1em}{}}
+
+% ---------- Hyperlinks ----------
+
+\usepackage{fancyhdr} % Before hyperref
+\usepackage[pdftex,hidelinks,hypertexnames=false,hyperfootnotes=false,pdfpagemode=UseNone,pdfdisplaydoctitle=true]{hyperref} % Last package
+
+% ---------- Layout ----------
+
+\usepackage[margin=1.1in,footskip=0.7in]{geometry} % After hyperref
+
+% ---------- Headers + footers ----------
+
+\renewcommand{\headrule}{}
+
+\pagestyle{fancy} % After hyperref + geometry
+\fancyhf{}
+\fancyfoot[C]{\thepage}
+
+\fancypagestyle{plain}{\fancyhf{}}
+\newcommand{\available}[1]{\fancypagestyle{plain}{\fancyfoot[C]{\color{gray}\footnotesize Available at \url{#1}}}}
+\newcommand{\published}[2]{\fancypagestyle{plain}{\fancyfoot[C]{\footnotesize Published in \emph{#1}\;\textbullet\;Available at \url{#2}}}}
+

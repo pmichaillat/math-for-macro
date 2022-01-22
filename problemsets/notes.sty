@@ -1,0 +1,20 @@
+% ---------- General typography ----------
+
+\setlist[itemize,1]{leftmargin=0pt,label=\color{gray}{\upshape\textbullet}}
+\setlist[itemize,2]{leftmargin=0pt,label=\color{gray}{\upshape\textendash}}
+\setlist[enumerate,1]{leftmargin=0pt,label=\upshape\Alph*)}
+
+% ---------- Title page ----------
+
+\usepackage[subfigure]{tocloft}
+\renewcommand{\contentsname}{}
+\renewcommand{\cftsecfont}{\normalfont}
+\renewcommand{\cftsecpagefont}{\normalfont}
+\renewcommand{\cftsecaftersnum}{.}
+\renewcommand{\cftsubsecaftersnum}{.}
+\renewcommand{\cftdotsep}{10}
+\setlength{\cftbeforesecskip}{0em}
+
+% ---------- Headings ----------
+
+\newcommand{\sectionbreak}{\clearpage}
