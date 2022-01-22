@@ -1,0 +1,371 @@
+\documentclass[letterpaper,12pt,leqno]{article}
+\usepackage{paper,math,notes}
+\available{https://pascalmichaillat.org/x/}
+\hypersetup{pdftitle={Optimal Control}}
+
+\begin{document}
+
+\title{Optimal Control}
+\author{Pascal Michaillat}
+\date{}
+
+\begin{titlepage}
+\maketitle
+\tableofcontents
+\end{titlepage}
+
+\section{Preliminary Results}
+
+Before presenting the techniques of optimal control, we review two mathematical results: L'Hopital's rule and Leibniz's rule. These results are used in section~\ref{sec:HEURISTIC} for the derivations of some of the results.
+
+\subsection{L'Hopital's rule}
+
+L'Hopital's rule states that if 
+\begin{equation*}
+\lim_{x\to x_{0}}f(x) =\lim_{x\to x_{0}}g(x) =0,
+\end{equation*}
+then 
+\begin{equation*}
+\lim_{x\to x_{0}}\frac{f(x)}{g(x)}=\lim_{x\to x_{0}}\frac{f'(x) }{g'(x)}.
+\end{equation*}
+
+\subsection{Leibniz's rule}
+
+Leibniz's rule states that if
+\begin{equation*}
+I(z) \equiv \int_{a(z) }^{b(z)}f\bp{x,z} dx
+\end{equation*}
+where $x$ is the integration variable, $z$ is a parameter and $f\bp{ x,z}$ is assumed to have a continuous derivative $\pdx{f(x,z)}{z}$ in the interval $\bs{a(z),b(z)}$, then the effect of change in $z$ on the integral is given by
+\begin{equation*}
+\od{I}{z}(z) =\int_{a(z)}^{b(z)} \pd{f}{z}(x,z) dx+\od{b}{z}(z) \cdot f( b(z),z) -\od{a}{z}(z) \cdot f(a(z) ,z).
+\end{equation*}
+
+\section{Consumption-Saving Problem}
+
+This section considers the same consumption-saving problem as in the notes on dynamic programming. The only difference is that the problem is now set in continuous time. 
+
+\subsection{Description of the Problem}
+
+Taking initial wealth $a_{0}$ as given, the problem is to choose the consumption path $\bc{c(t)}_{t\geq 0}$ to maximize the lifetime utility
+\begin{align}
+\int_{0}^{\infty}e^{-\r \cdot t}\cdot u(c(t)) dt \label{eq:cont},
+\end{align}
+subject to the law of motion
+\begin{equation}
+\dot{a}(t) = r\cdot a(t)-c(t).\label{eq:LAW}
+\end{equation}  
+The parameter $r>0$ is the constant interest rate at which wealth is invested. The parameter $\r>0$ is the discount factor. The notation $\dot{a}$ denotes the derivative of wealth $a$ with respect to time $t$:
+\[\dot{a}(t)\equiv \pd{a(t)}{t}.\] 
+
+\subsection{Optimal-Control Approach}
+
+To solve this problem, it is inconvenient to use the Lagrangian technique or dynamic programming technique because they are designed for discrete-time optimization problems. Instead, we use a technique called \textit{optimal control}. We will see in section~\ref{sec:HEURISTIC} that optimal control is related both to the Lagrangian technique and the dynamic programming technique. But optimal control is designed for continuous-time optimization problems. 
+
+There are two ways to apply the optimal-control approach: one by forming a \textit{present-value Hamiltonian}, the other by forming a \textit{current-value Hamiltonian}. These two ways are roughly equivalent, but using the current-value Hamiltonian is usually simpler.
+
+\section{Solution with Present-Value Hamiltonian}
+
+We start by solving the consumption-saving problem with the present-value Hamiltonian.
+
+\subsection{State and Control Variables}
+
+First, we identify the \textit{state variables} and \textit{control variables}. A control variable can be adjusted at any time $t$ whereas the evolution of a state variable follows a law of motion such as~\eqref{eq:LAW}. Here, the control variable is consumption $c(t)$ and the state variable is wealth $a(t)$.
+
+\subsection{Present-Value Hamiltonian}
+
+Second, we write down the present-value Hamiltonian
+\begin{equation*}
+\Hc(t) = e^{-\r \cdot t}\cdot u(c(t)) +\l(t) \cdot \bp{r\cdot a(t) - c(t)}.
+\end{equation*}
+To form the Hamiltonian, we introduce a new variable $\l(t)$, which we call the \textit{costate variable} associated with the state variable $a(t)$. In general, we introduce as many costate variables as there are state variables. As a consequence, we introduce as many costate variables as there are laws of motion, because each state variable is associated with a law of motion. 
+
+The costate variable is analogous to a Lagrange multiplier, except that it is associated to a law of motion instead of a static constraint. But just like a Lagrange multiplier, the costate variable measures the value from marginally relaxing the constraint at the optimum.
+
+\subsection{Optimality Conditions}  
+
+Next we write down the two optimality conditions, which are derived from the Maximum Principle:
+\begin{align}
+\pd{\Hc(t)}{c(t)}=& 0 \label{eq:foc1}\\
+\pd{\Hc(t)}{a(t)}=&-\dot{\l}(t)\label{eq:foc2}.
+\end{align}
+
+The optimality conditions can be rewritten as
+\begin{align}
+0 &= e^{-\r \cdot t}\cdot u'(c(t)) -\l(t)\label{eq:focc} \\
+-\dot{\l}(t)&= \l(t)\cdot  r  \label{eq:focs}.
+\end{align}
+
+\subsection{Transversality Condition} 
+
+Then we impose a \textit{transversality condition}:
+\begin{equation}
+\lim_{t\to+\infty} \l(t)\cdot a(t)=0.\label{eq:trans1}
+\end{equation}
+The transversality condition describes what must be satisfied at the end of the time horizon at the optimum. Here it says that at the optimum, at the end of time, either there is no wealth left ($a(t)=0$) or wealth has no value ($\l(t)\cdot a(t)=0$).\footnote{Recall that the costate variable $\l(t)$ measures the marginal value of wealth at the optimum.} This clearly has to be the case at the optimum: if there was some wealth left and wealth had value, then all the wealth that is left over should be consumed. The idea behind the transversality condition is that if there is any flexibility at the end of time, then the marginal benefit from exploiting that flexibility must be zero at the optimum.
+
+\subsection{Euler Equation} 
+
+We solve explicitly for the optimal consumption path by eliminating the costate variable $\l(t)$ using~\eqref{eq:focc} and~\eqref{eq:focs}. 
+
+To eliminate $\l(t)$, we first take log of \eqref{eq:focc}:
+\begin{align*}
+-\r \cdot t+ \ln{u'(c(t))} =\ln{\l(t)}.
+\end{align*}
+We then take time derivatives in this equation:
+\begin{equation*}
+\r+\bs{ \frac{-u^{''}(c(t)) \cdot c(t)}{u'(c(t))}}\cdot \bs{\frac{\dot{c}(t)}{c(t)}} =-\frac{\dot{\l}(t)}{\l(t)}.
+\end{equation*}
+Equation~\eqref{eq:focs} can be rewritten as
+\begin{align*}
+-\frac{\dot{\l}(t)}{\l(t)}&=  r.
+\end{align*}
+Combining these two equations, we obtain the Euler equation for optimal consumption:
+\begin{equation}
+\frac{\dot{c}(t)}{c(t)}\cdot \bs{\frac{-u^{''}(c(t)) \cdot c(t)}{u'(c(t)) }} =r-\r.
+\label{eq:EULER}\end{equation}
+The term \[\frac{-u^{''}(c(t))\cdot  c(t)}{u'(c(t))}\] measures relative risk aversion. The coefficient of relative risk aversion also corresponds to the inverse of the intertemporal elasticity of substitution.
+
+\subsection{CRRA Utility}
+
+Consider the following utility function:
+\begin{equation*}
+u(c) =\frac{c^{1-\g }-1}{1-\g }.
+\end{equation*}
+This utility function is know as Constant Relative Risk Aversion (CRRA ) utility. It is characterized by a constant coefficient of relative risk aversion $\g$ as
+\[\frac{-u^{''}(c) \cdot  c}{u^{'}(c)}=\g.\]
+With CRRA utility, the Euler equation simplifies to
+\begin{equation*}
+\frac{\dot{c}(t)}{c(t)}=\frac{r-\r}{\g}.
+\end{equation*}
+
+\section{Solution with Current-Value Hamiltonian}
+
+Next we solve the consumption-saving problem with a current-value Hamiltonian.
+
+\subsection{Current-Value Hamiltonian}
+
+The present-value Hamiltonian $\Hc$ depends on $t$ because of the discounting $e^{-\r \cdot t}$, which might create some difficulties in deriving and analyzing solutions to the problem. Multiplying $\Hc$ by $e^{\r \cdot t}$ addresses this problem. 
+
+We denote the resulting Hamiltonian $\Hc^{*}$ as current-value Hamiltonian. The current-value Hamiltonian is given by
+\begin{equation*}
+\Hc^{*}(t)\equiv e^{\r \cdot t}\cdot  \Hc(t)=u(c(t)) +e^{\r \cdot t} \cdot \l(t) \cdot \bp{r\cdot a(t)-c(t)}.
+\end{equation*}
+We define a new costate variable $q(t)$ as
+\begin{equation*}
+q(t)\equiv  e^{\r \cdot t} \cdot \l(t).
+\end{equation*}
+The current-value Hamiltonian becomes
+\begin{equation*}
+\Hc^{*}(t)= u(c(t)) +q(t) \cdot \bp{r\cdot a(t)-c(t)}.
+\end{equation*}
+This is the expression of the current-value Hamiltonian that we use in practice.
+
+\subsection{Optimality Conditions}
+
+The optimality conditions are slightly different. The optimality conditions become
+\begin{align*}
+\pd{\Hc^{*}(t)}{c(t)}=& 0\\
+\pd{\Hc(t)^{*}}{a(t)}=&\r\cdot q(t)-\dot{q}(t).
+\end{align*}
+
+Compared to the optimality conditions~\eqref{eq:foc1} and~\eqref{eq:foc2} with the present-value Hamiltonian, there is an extra term $+\r\cdot q(t)$ in the second condition. The extra term arises because the costate variable $q(t)$ is defined differently form the costate variable $\l(t)$ that we used in the present-value Hamiltonian. 
+
+The optimality conditions can be rewritten as
+\begin{align}
+0 &= u'(c(t)) -q(t)\label{eq:auto1}\\
+\r\cdot q(t)-\dot{q}(t)&= q(t)\cdot  r .\label{eq:auto2}
+\end{align}
+
+\subsection{Transversality Condition}
+
+The transversality condition becomes
+\[\lim_{t\to+\infty}e^{-\r \cdot t} \cdot  q(t)\cdot a(t)=0.\]
+Compared to the transversality condition~\eqref{eq:trans1} with the present-value Hamiltonian, there is an extra factor $e^{-\r \cdot t}$ in this condition. The extra factor arises because the costate variable $q(t)$ is defined differently from the costate variable $\l(t)$ that we used in the present-value Hamiltonian. But the interpretation of the transversality condition remains the same: at the optimum, at the end of time, any leftover wealth must be consumed, except if the present-discounted marginal value of wealth is zero at the end of time.
+
+\subsection{Euler Equation}
+
+By combining equations~\eqref{eq:auto1} and~\eqref{eq:auto2}, we obtain exactly the same condition~\eqref{eq:EULER} as with the present-value Hamiltonian. We take the log of equation~\eqref{eq:auto1} to obtain
+\begin{align*}
+\ln{u'(c(t))} = \ln{q(t)}.
+\end{align*}
+We then take time derivatives in this equation:
+\begin{equation*}
+\bs{ \frac{-u^{''}(c(t)) \cdot c(t)}{u'(c(t))}}\cdot \bs{\frac{\dot{c}(t)}{c(t)}} =-\frac{\dot{q}(t)}{q(t)}.
+\end{equation*}
+Equation~\eqref{eq:auto2} can be rewritten
+\begin{align*}
+-\frac{\dot{q}(t)}{q(t)}&= r-\r.
+\end{align*}
+Combining these two equations, we obtain the same Euler equation for optimal consumption as the one we obtained with the present-value Hamiltonian:
+\begin{equation*}
+\frac{\dot{c}(t)}{c(t)}\cdot \bs{\frac{-u^{''}(c(t)) \cdot c(t)}{u'(c(t)) }} =r-\r.
+\end{equation*}
+
+\subsection{Comparison of the Two Solutions}
+
+The two approaches---the approach with the present-value Hamiltonian and the approach with the current-value Hamiltonian---are equivalent. They lead to the same Euler equation. However, it is often more convenient to work with the current-value Hamiltonian.
+
+\section{Theory of Optimal Control}
+
+Optimal control can be used to solve any continuous-time optimization problem. This section provides optimality conditions for a general optimization problem.
+
+\subsection{General Optimization Problem}
+
+The general problem is to choose $\bc{c(t)}_{t\geq 0}$ to maximize
+\begin{align}
+\int_{0}^{\infty}e^{-\r\cdot  t}\cdot  u\bp{ a(t),c(t)}\label{dpc} 
+\end{align}
+given the constraint that for all $t$
+\begin{align}
+\dot{a}(t) = g(a(t),c(t)),\label{eq:thelaw}
+\end{align}
+and taking $a_{0}$ as given. The parameter $\r >0$ is the discount rate. The functions $u$ and $g$ are concave and twice differentiable.
+
+\subsection{Present-Value Hamiltonian}
+
+An important result in optimal control theory is the Maximum Principle. It is due to Pontryagin. In addition to the control and state variables, we introduce a costate variable $\l (t)$  associated with the state variable. The costate variable measures the shadow price of the associated state variable. The costate variable enters the optimal control problem through the present-value Hamiltonian, defined as 
+\begin{equation}
+\Hc(t)=e^{-\r\cdot  t}\cdot  u(a(t),c(t)) +\l(t)\cdot g(a(t),c(t)).  
+\label{eq:HAMILDEF}\end{equation}
+
+\subsection{Present-Value Optimality Conditions}
+
+The Maximum Principle gives necessary conditions for optimality. There are three conditions. The first two conditions are
+\begin{align}
+\pd{\Hc(t)}{c(t)} &=0  \label{eq:hcontrol} \\
+\pd{\Hc(t)}{a(t)} &=-\dot{\l}(t).\label{eq:hstate}
+\end{align}
+Condition \eqref{eq:hcontrol} implies that the Hamiltonian must be maximized
+with respect to the control variable at any point in time. Condition \eqref{eq:hstate} says that the marginal change of the Hamiltonian associated with a unit change of the state variable is equal to  minus the rate of change of the costate variable. 
+
+The optimal solution must also satisfy a third condition, which we call transversality condition:
+\begin{equation}
+\lim_{t\to \infty }\l(t)\cdot a(t)=0.  \label{eq:tvc}
+\end{equation}
+The transversality condition implies the product of costate and state must be converging to zero as time goes to infinity.
+
+\subsection{Current-Value Hamiltonian}
+
+We can reformulate the results from the Maximum Principle with the current-value Hamiltonian which is often easier to manipulate. The current-value Hamiltonian is defined as 
+\begin{equation*}
+\Hc^{*}(t)=  u\bp{a(t),c(t)} +q(t)\cdot g(a(t),c(t)),
+\end{equation*}
+where $q(t)$ is the costate variable associated with the state variable $a(t)$.
+
+\subsection{Current-Value Optimality Conditions}
+
+With the current-value Hamiltonian, the three necessary conditions~\eqref{eq:hcontrol},~\eqref{eq:hstate}, and ~\eqref{eq:tvc} for optimality become
+\begin{align*}
+\pd{\Hc^{*}(t)}{c(t)} &=0\\
+\pd{\Hc^{*}(t)}{a(t)} &=\r\cdot q(t)-\dot{q}(t)\\
+\lim_{t\to \infty }e^{-\r\cdot  t}\cdot q(t)\cdot a(t)&=0. 
+\end{align*}
+
+\section{Heuristic Derivation of the Maximum Principle}\label{sec:HEURISTIC}
+
+In this section, we provide an heuristic derivation of the necessary conditions for optimality provided by the Maximum Principle. One way to derive the optimality conditions \eqref{eq:hcontrol} and \eqref{eq:hstate} is to apply informally the results from dynamic programming. Formally, many of the claims below are imprecise, but they will serve the purpose of providing intuition for the Maximum Principle.
+
+\subsection{Value Function for the Discretized Optimization Problem}
+
+We begin by defining the value function of the problem, which the maximized value of the objective function as a function of the
+state variable $a(t)$ and time $t$:
+\begin{equation*}
+V\bp{a(t),t} =\underset{\bc{c(s)}_{s\geq t}}{\max} \int_{t}^{\infty }e^{-\r \cdot \bp{s-t}}\cdot u\bp{a(s),c(s)} ds,
+\end{equation*}
+where the maximization is subject for all $s\geq t$ to the law of motion of the state variable
+\begin{equation}
+\dot{a}(s)=g\bp{a(s),c(s)}.\label{eq:lmh}
+\end{equation}
+
+\subsection{Bellman Equation}
+
+Since the problem has a recursive structure, we can apply the Principle of Optimality and write the value function as the solution to a Bellman equation:
+\begin{align*}
+V\bp{ a(t),t} =\underset{\bc{c(s)}_{t\leq s\leq t+\D t}}{\max }\bc{\int_{t}^{t+\D t}e^{-\r \cdot \bp{ s-t}} \cdot u\bp{a(s),c(s)} ds+e^{-\r  \cdot \D t} \cdot V\bp{ a(t+\D t),t+\D t} },
+\end{align*}
+where the maximization is subject for all $t\leq s\leq t+\D t$ to~\eqref{eq:lmh}.
+
+Subtract $V\bp{a(t),t} $ from both side and divide by $\D t$:
+\begin{align}
+0=\underset{\bc{c(s)}_{t\leq s\leq t+\D t}}{\max }\bs{\frac{\int_{t}^{t+\D t}e^{-\r \cdot \bp{ s-t}} \cdot u\bp{a(s),c(s)} ds}{\D t}+ \frac{e^{-\r  \cdot \D t} \cdot V\bp{ a(t+\D t),t+\D t}-V\bp{ a(t),t}}{\D t} },\label{eq:BIG}
+\end{align}
+where the maximization is subject for all $t\leq s\leq t+\D t$ to~\eqref{eq:lmh}.
+
+\subsection{Hamilton-Jacobi-Bellman Equation}
+
+We now take the limit of \eqref{eq:BIG} as $\D t\to 0$ to obtain the Hamilton-Jacobi-Bellman equation.
+
+\paragraph{Limit of First Term} We start with the first term in the curly brackets. Since numerator and denominator of the first term approach zero as $\D t\to 0$,  we apply L'Hopital's rule. The derivative of the denominator with respect to $\D t$ is $1$. We apply Leibniz's rule to determine the derivative with respect to $\D t$ of the integral in the numerator. Leibniz's rule tells us that the derivative of the integral with respect to $\D t$ is
+\[e^{-\r \cdot  \D t} \cdot u\bp{a(t+\D t),c(t+\D t)}.\]
+Therefore, the limit as $\D t\to 0$ for the first term in the bracket is 
+\begin{equation}
+u\bp{ a(t),c(t)}.\label{eq:BIG1}
+\end{equation}
+
+\paragraph{Limit of Second Term}  We move on to the second term. Since 
+\[\lim_{\D t\to 0} e^{-\r \cdot \D t}=1\]
+and 
+\[\lim_{\D t\to 0} V\bp{ a(t+\D t),t+\D t} =V\bp{a(t),t}, \]
+both numerator and denominator approach zero as $\D t\to 0$. Therefore we apply L'Hopital's rule. The derivative of the denominator with respect to $\D t$ is $1$. The derivative of the numerator with respect to $\D t$ is
+\begin{align*}
+&-\r \cdot e^{-\r\cdot \D t}\cdot V\bp{ a(t+\D t),t+\D t}+e^{-\r\cdot \D t}\cdot \pd{V}{a}\bp{ a(t+\D t),t+\D t} \cdot \dot{a}(t+\D t)\\
+&+e^{-\r\cdot \D t}\cdot  \pd{V}{t}\bp{a(t+\D t),t+\D t}. 
+\end{align*}
+We have the following limits:
+\begin{align*}
+\lim_{\D t\to 0} \r \cdot e^{-\r\cdot \D t}\cdot V\bp{ a(t+\D t),t+\D t}&=\r \cdot V\bp{ a(t),t}\\
+\lim_{\D t\to 0} e^{-\r\cdot \D t}\cdot  \pd{V}{t}\bp{a(t+\D t),t+\D t} &= \pd{V}{t}\bp{a(t),t}\\
+\lim_{\D t\to 0} e^{-\r\cdot \D t}\cdot \pd{V}{a}\bp{ a(t+\D t),t+\D t}\cdot\dot{a}(t+\D t)&=\pd{V}{a}\bp{ a(t),t} \cdot \dot{a}(t)=\pd{V}{a}\bp{ a(t),t} \cdot g(a(t),c(t)),
+\end{align*}
+where the last equality results from the law of motion~\eqref{eq:thelaw} of state variable $a(t)$.
+
+Therefore, the limit as $\D t\to 0$ for the first term in the bracket is 
+\begin{equation}
+-\r \cdot V\bp{ a(t),t}+\pd{ V}{a}\bp{ a(t),t} \cdot g(a(t),c(t))+\pd{V}{t}\bp{a(t),t}.\label{eq:BIG2}
+\end{equation}
+
+\paragraph{Derivation of the Hamilton-Jacobi-Bellman Equation} Combining equations~\eqref{eq:BIG},~\eqref{eq:BIG1}, and~\eqref{eq:BIG2}, we obtain a version of the Bellman equation for the continuous-time optimization problem. This equation is called the \textit{Hamilton-Jacobi-Bellman equation}. The equation is
+\begin{equation}
+\r V\bp{ a(t),t} =\max_{c(t)}\bs{ u\bp{a(t),c(t)} +\pd{V}{a(t)}\bp{a(t),t}\cdot
+g(a(t),c(t)) +\pd{V}{t}\bp{a(t),t}}, \label{eq:HJB}
+\end{equation}
+where $a(t)$ is given. We define \[\l (t)\equiv e^{-\r \cdot t}\cdot \pd{V}{a(t)}\bp{a(t),t}.\]
+We can rewrite the Hamilton-Jacobi-Bellman equation as
+\begin{equation}
+\r V\bp{ a(t),t} =\max_{c(t)}\bs{ u\bp{a(t),c(t)} +e^{\r \cdot t}\cdot\l (t)  \cdot
+g(a(t),c(t)) +\pd{V}{t}\bp{a(t),t}}. \label{eq:HJB2}
+\end{equation}
+
+\subsection{Derivation of the Optimality Conditions}
+
+Taking the first-order condition with respect to $c(t)$ in the Hamilton-Jacobi-Bellman equation~\eqref{eq:HJB2} implies
+\begin{equation*}
+\pd{u}{c(t)}\bp{a(t),c(t)}+e^{\r \cdot t}\cdot\l (t) \cdot \pd{g}{c(t)}\bp{a(t),c(t)}=0.
+\end{equation*}
+Furthermore, the envelope theorem implies
+\begin{align*}
+\r \pd{V}{a(t)}\bp{a(t),t}&=\pd{u}{a(t)}\bp{a(t),c(t)}+e^{\r \cdot t}\cdot\l (t)\cdot \pd{g}{a(t)}\bp{ a(t),c(t)}+\frac{\partial^{2}V}{\partial t\partial a(t)}\bp{a(t),t}.
+\end{align*}
+
+The last two equations become equivalent to optimality conditions~\eqref{eq:hcontrol} and~\eqref{eq:hstate}. This is the case because, using the definition of the present-value Hamiltonian, equation~\eqref{eq:hcontrol} can be written
+\[\pd{H(t)}{c(t)}\bp{a(t),c(t)} =0\]
+and equation~\eqref{eq:hstate} can be written
+\[\pd{u}{a(t)}\bp{a(t),c(t)} +e^{\r\cdot  t}\cdot \l(t)\cdot \pd{g}{a(t)}\bp{a(t),c(t)}=-e^{\r\cdot  t}\cdot \pd{\l(t)}{t},\]
+which implies
+\[\pd{H(t)}{a(t)}\bp{a(t),c(t)} =-\pd{\l(t)}{t}.\]
+Note that we consider that the Hamiltonian is a function of $a_{t}$, $t$, and $\l_{t}$, and we only take the partial derivative with respect to $a_{t}$, thus keeping $\l_{t}$ constant.
+
+\section{Applications of the Hamilton-Jacobi-Bellman Equation}
+
+The Hamilton-Jacobi-Bellman equation~\eqref{eq:HJB} is an optimality condition that equates flow costs with flow benefits. In practice, we write it down without going through all the algebra relating to $\D t.$ 
+
+This equation is commonly used in macroeconomics. For instance, it is frequently used in search-and-matching models of the labor market. In a search-and-matching model, a vacant job costs $c$ per unit time and becomes occupied according to a Poisson process with arrival rate $q.$ In the labor market, the occupied job yields net returns $p-w,$ where $p$ is real output and $w$ is the cost of labor. The job runs a risk $\l$ of being destroyed. 
+
+Let $V$ be the value of the vacant job and $J$ be the value of occupied job. Let $r$ be the discount factor. In steady state, the Hamilton-Jacobi-Bellman equations are
+\begin{align*}
+r\cdot V &=-c+q \cdot  \bp{J-V},\\
+r\cdot J &=p-w+ \l \cdot \bp{0-J}=p-w-\l \cdot J.
+\end{align*}
+There is no maximization on the right-hand-side in this particular example. These equations simply describe the relationship between the equilibrium values $V$, $J$, and $w$. 
+
+\end{document}

@@ -1,0 +1,62 @@
+\documentclass[letterpaper,12pt,leqno]{article}
+\usepackage{paper,math,notes}
+\available{https://pascalmichaillat.org/x/}
+\hypersetup{pdftitle={Problem Set on Optimal Control}}
+
+\begin{document}
+
+\title{Problem Set on Optimal Control}
+\author{Pascal Michaillat}
+\date{}
+
+\begin{titlepage}
+\maketitle
+\end{titlepage}
+
+\section*{Problem 1}
+
+Consider the following optimal growth problem: Given initial capital $k_{0}>0$, choose a consumption path $\bc{c_{t}}_{t\geq 0}$ to maximize utility
+\begin{align*}
+\int_{0}^{\infty}e^{-\rho\cdot  t} \cdot \ln{c_{t}} dt 
+\end{align*}
+subject to the law of motion of capital
+\begin{align*}
+\dot{k}_{t} &=f\bp{k_{t}} -c_{t}-\d \cdot k_{t}.
+\end{align*}
+The discount factor $\rho>0$, and the production function $f$ satisfies
+ \[f\bp{k} =A\cdot k^{\a},\]
+ where  $\a \in \bp{0,1}$ and $A>0$.
+
+\begin{enumerate}
+\item Write down the present-value Hamiltonian.
+\item Show that the Euler equation is
+\begin{align*}
+\frac{\dot{c}_{t}}{c_{t}} &=\a \cdot  A \cdot k_{t}^{\a -1}-\bp{\d +\rho}.
+\end{align*}
+
+\item Solve for the steady state of the system.
+\end{enumerate}
+
+\section*{Problem 2}
+
+Consider the following investment problem: Given initial capital $k_{0}$, choose the investment path $\bc{i_{t}} _{t \geq 0}$ to maximize profits
+\begin{align*}
+\int_{0}^{\infty} e^{-r\cdot t}\bs{f\bp{k_{t}} -i_{t}-\frac{\chi}{2}\cdot \bp{\frac{i_{t}^{2}}{k_{t}}}} dt 
+\end{align*}
+subject to the law of motion of capital (we assume no capital depreciation)
+\[\dot{k}_{t} =i_{t}.\]
+The interest rate $r>0$, the capital adjustment cost $\chi>0$, and the production function $f$ satisfies $f'>0$ and $f''<0$.
+
+\begin{enumerate}
+\item Write down the current-value Hamiltonian. 
+\item Use the optimality conditions for the current-value Hamiltonian to derive the following differential equations:
+\begin{align*}
+\dot{k}_{t} &=\bp{\frac{q_{t}-1}{\chi}}\cdot  k_{t} \\
+\dot{q}_{t} &=r\cdot q_{t}-f'\bp{k_{t}} -\frac{1}{2\cdot \chi}\bp{q_{t}-1}^{2}
+\end{align*}
+
+\item Solve for the steady state.
+\end{enumerate}
+
+
+\end{document}
