@@ -6,14 +6,6 @@ This repository contains the source files of the course "Mathematics for Macroec
 
 The course material is hosted at https://pascalmichaillat.org/c3/.
 
-## Course overview
-
-The course is designed for graduate students. It explores basic mathematical methods to study dynamical systems, in discrete time and in continuous time. Such systems are prevalent in macroeconomics. The course introduces three methods, which can be covered in about a week:
-
-1. Dynamic programming – To solve discrete-time optimization problems
-2. Optimal control – To solve continuous-time optimization problems
-3. Differential equations – To characterize continuous-time systems
-
 ## Source files
 
 The source files are in LaTeX format. They are organized in 2 folders:
