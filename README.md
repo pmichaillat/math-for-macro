@@ -19,9 +19,9 @@ The folders also contain the PDF files produced by compiling the LaTeX files wit
 
 The `lecturenotes` folder contains the LaTeX source files to the lecture notes:
 
-+ `notes1.tex`, `notes1.pdf` – Lecture notes on dynamic programming
-+ `notes2.tex`, `notes2.pdf` – Lecture notes on optimal control
-+ `notes3.tex`, `notes3.pdf` – Lecture notes on differential equations
++ `notes1.tex`, `notes1.pdf` – Dynamic programming
++ `notes2.tex`, `notes2.pdf` – Optimal control
++ `notes3.tex`, `notes3.pdf` – Differential equations
 + `phasediagrams.key`, `phasediagrams.pdf` – Phase diagrams included in `notes3.tex`
 
 ### Problem sets
