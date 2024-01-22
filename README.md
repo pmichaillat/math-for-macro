@@ -8,7 +8,7 @@ The course material is hosted at https://pascalmichaillat.org/c3/.
 
 ## Lecture notes
 
-The source files to the lecture notes are contained in the `lecturenotes` folder. The lecture notes are written in LaTeX, and then compiled to PDF with pdfTeX. There are 3 sets of lecture notes:
+The source files to the lecture notes are placed in the `lecturenotes` folder. The lecture notes are written in LaTeX, and then compiled to PDF with pdfTeX. There are 3 sets of lecture notes:
 
 + `notes1.tex`, `notes1.pdf` – Dynamic programming
 + `notes2.tex`, `notes2.pdf` – Optimal control
@@ -17,7 +17,7 @@ The source files to the lecture notes are contained in the `lecturenotes` folder
 
 ## Problem sets
 
-The source files to the problem sets are contained in the `problemsets` folder. The problem sets are written in LaTeX, and then compiled to PDF with pdfTeX. There are 4 problem sets:
+The source files to the problem sets are placed in the `problemsets` folder. The problem sets are written in LaTeX, and then compiled to PDF with pdfTeX. There are 4 problem sets:
 
 + `ps1.tex`, `ps1.pdf` – Problem set on dynamic programming
 + `ps2.tex`, `ps2.pdf` – Problem set on optimal control
