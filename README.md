@@ -6,27 +6,18 @@ This repository contains the source files of the course "Mathematics for Macroec
 
 The course material is hosted at https://pascalmichaillat.org/c3/.
 
-## Source files
+## Lecture notes
 
-The source files are in LaTeX format. They are organized in 2 folders:
-
-+ `lecturenotes` folder – 3 sets of lecture notes
-+ `problemsets` folder – 4 problem sets
-
-The folders also contain the PDF files produced by compiling the LaTeX files with pdfTeX.
-
-### Lecture notes
-
-The `lecturenotes` folder contains the LaTeX source files to the lecture notes:
+The source files to the lecture notes are contained in the `lecturenotes` folder. The lecture notes are written in LaTeX, and then compiled to PDF with pdfTeX. There are 3 sets of lecture notes:
 
 + `notes1.tex`, `notes1.pdf` – Dynamic programming
 + `notes2.tex`, `notes2.pdf` – Optimal control
 + `notes3.tex`, `notes3.pdf` – Differential equations
 + `phasediagrams.key`, `phasediagrams.pdf` – Phase diagrams included in `notes3.tex`
 
-### Problem sets
+## Problem sets
 
-The `problemsets` folder contains the LaTeX source files to the problem sets:
+The source files to the problem sets are contained in the `problemsets` folder. The problem sets are written in LaTeX, and then compiled to PDF with pdfTeX. There are 4 problem sets:
 
 + `ps1.tex`, `ps1.pdf` – Problem set on dynamic programming
 + `ps2.tex`, `ps2.pdf` – Problem set on optimal control
@@ -35,9 +26,9 @@ The `problemsets` folder contains the LaTeX source files to the problem sets:
 
 Solutions to the problems sets are available to instructors [upon request](mailto:pascal.michaillat@gmail.com).
 
-### Style files
+## Style files
 
-The folders also contain the LaTeX style files that are used to format the lecture notes and problem sets:
+The folders also contain the LaTeX style files used to format the lecture notes and problem sets:
 
 + `paper.sty` – [Commands to format academic papers](https://github.com/pmichaillat/latex-paper) 
 + `notes.sty` – Slight modification of `paper.sty` for teaching material
