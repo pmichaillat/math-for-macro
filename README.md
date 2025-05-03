@@ -4,7 +4,7 @@ This repository contains the source files of the course "Mathematics for Macroec
 
 ## Course webpage
 
-The course material is hosted at https://pascalmichaillat.org/c3/.
+The course material is hosted at https://pascalmichaillat.org/x/.
 
 ## Lecture notes
 
