@@ -1,12 +1,12 @@
-% ---------- General typography ----------
+% ---- Format lists ----
 
 \setlist[itemize,1]{leftmargin=0pt,label=\color{gray}{\upshape\textbullet}}
 \setlist[itemize,2]{leftmargin=0pt,label=\color{gray}{\upshape\textendash}}
 \setlist[enumerate,1]{leftmargin=0pt,label=\upshape\Alph*.}
 
-% ---------- Title page ----------
+% ---- Format table of content ----
 
-\usepackage[subfigure]{tocloft}
+\usepackage{tocloft}
 \renewcommand{\contentsname}{}
 \renewcommand{\cftsecfont}{\normalfont}
 \renewcommand{\cftsecpagefont}{\normalfont}
@@ -15,6 +15,6 @@
 \renewcommand{\cftdotsep}{10}
 \setlength{\cftbeforesecskip}{0em}
 
-% ---------- Headings ----------
+% ---- Add page break after each section ----
 
 \newcommand{\sectionbreak}{\clearpage}

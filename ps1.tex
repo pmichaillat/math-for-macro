@@ -1,0 +1,100 @@
+\documentclass[letterpaper,11pt,leqno]{article}
+\usepackage{paper,math,notes}
+\hypersetup{pdftitle={Problem Set on Dynamic Programming}}
+\begin{document}
+
+\title{Problem Set on Dynamic Programming}
+\author{Pascal Michaillat}
+\date{}
+\paperurl{https://pascalmichaillat.org/x/}
+\begin{titlepage}
+\maketitle
+\end{titlepage}
+
+\section*{Problem 1}
+
+Consider the following optimal growth problem: Given initial capital $k_{0}>0$, choose consumption $\bc{c_{t}} _{t =0}^{\infty}$ to maximize utility
+\begin{equation*}
+\sum_{t=0}^{\infty}\b^{t} \ln{c_{t}}
+\end{equation*}
+subject to the resource constraint
+\begin{equation*}
+k_{t+1}=a k_{t}^{\a}-c_{t}.
+\end{equation*}
+The parameters satisfy $0<\b<1$, $a>0$, $0<\a <1$.
+
+\begin{enumerate}
+\item Derive the optimal law of motion of consumption $c_{t}$ using a Lagrangian.
+\item Identify the state variable and the control variable. 
+\item Write down the Bellman equation.
+\item Derive the following Euler equation: 
+\begin{equation*}
+c_{t+1}=\b  \a  a k_{t+1}^{\a -1} c_{t}.
+\end{equation*}
+
+\item Derive the first two value functions, $V_{1}(k)$ and  $V_{2}(k)$, obtained by iteration on the Bellman equation starting with the value function $V_{0}(k) \equiv 0$. 
+\item The process of determining the value function by iterations using the Bellman equation is commonly used to solve dynamic programs numerically. The algorithm is called \textit{value function iteration}. For this optimal growth problem, one can show using value function iteration that the value function is
+\[V(k) =\k +\frac{\ln{k^{\a}}}{1-\a \b},\]
+where $\k$ is a constant. Using the Bellman equation, determine the policy function $k'(k)$ associated with this value function.
+\item In light of these results, for which reasons would you prefer to use the dynamic-programming approach instead of the Lagrangian approach to solve the optimal growth problem? And for which reasons would you prefer to use the Lagrangian approach instead of the dynamic-programming approach?
+\end{enumerate}
+
+\section*{Problem 2}
+
+Consider the problem of choosing consumption $\bc{c_{t}}_{t=0}^{\infty}$ to maximize expected utility
+\begin{equation*}
+\E[0]{\sum_{t=0}^{\infty}\b^{t} u(c_{t})}
+\end{equation*}
+subject to the budget constraint
+\begin{equation*}
+c_{t}+p_{t} s_{t+1}=(d_{t}+p_{t}) s_{t}.
+\end{equation*}
+$d_{t}$ is the dividend paid out for one share of the asset, $p_{t}$ is the price of one share of the asset, and $s_{t}$ is the number of shares of the asset held at the beginning of period $t$. In equilibrium, the price $p_{t}$ of one share is solely a function of dividends $d_{t}$. Dividends can only take two values $d_{l}$ and $d_{h}$, with $0<d_{l}<d_{h}$. Dividends follow a Markov process with transition probabilities 
+\begin{equation*}
+\P{d_{t+1}=d_{l}\mid d_{t}=d_{l}} =\P{d_{t+1}=d_{h}\mid d_{t}=d_{h}} =\r
+\end{equation*}
+with $0.5<\r 1$.
+
+\begin{enumerate}
+\item Identify state and control variables. 
+\item Write down the Bellman equation.
+\item Derive the following Euler equation: 
+\begin{equation*}
+p_{t} u'(c_{t}) =\b  \E{(d_{t+1}+p_{t+1})  u'(c_{t+1}) \mid d_{t}} .
+\end{equation*}
+\item Suppose that $u(c) =c$. Show that the asset price is higher when the current dividend is high.
+\end{enumerate}
+
+\section*{Problem 3}
+
+Consider the following optimal growth problem: Given initial capital $k_{0}>0$, choose consumption and labor $\bc{c_{t},l_{t}}_{t=0}^{\infty}$ to maximize utility
+\begin{equation*}
+\sum_{t=0}^{\infty}\b^{t} u(c_{t},l_{t})
+\end{equation*}
+subject to the law of motion of capital
+\begin{align*}
+k_{t+1}&=a_{t} f(k_{t},l_{t}) -c_{t}.
+\end{align*}
+In addition, we impose $0\le l_{t}\le 1$. The discount factor $\b \in (0,1)$. The function $f$ is increasing and concave in both arguments. The function $u$ is increasing and concave in $c$, decreasing and convex in $l$. 
+
+\paragraph{Deterministic case} First, suppose $a_{t}=1$ for all $t$.
+
+\begin{enumerate}
+\item What are the state and control variables?
+\item  Write down the Bellman equation.
+\item Derive the following optimality conditions: 
+\begin{align*}
+\pd{u(c_{t},l_{t})}{c_{t}} &=\b  \pd{u(c_{t+1},l_{t+1})}{c_{t+1}} \cdot \pd{f(k_{t+1},l_{t+1})}{k_{t+1}}\\
+\pd{u(c_{t},l_{t})}{c_{t}} \cdot \pd{f(k_{t},l_{t})}{l_{t}} &=-\pd{u(c_{t},l_{t})}{l_{t}}.
+\end{align*}
+\item Suppose that the production function $f\bp{k,l} =k^{\a}\cdot l^{1-\a}$. Determine the ratios $c/k$ and $l/k$ in steady state.
+\end{enumerate}
+
+\paragraph{Stochastic case} Now, suppose $a_{t}$ is a stochastic process that takes values $a_{1}$ and $a_{2}$ with the following transition probabilities: $\P{a_{t+1}=a_{1}\mid a_{t}=a_{1}} =\P{a_{t+1}=a_{2}\mid a_{t}=a_{2}} =\r.$
+\begin{enumerate}\setcounter{enumi}{4}
+\item Write down the Bellman equation.
+\item Derive the optimality conditions.
+\end{enumerate}
+
+
+\end{document}

@@ -1,0 +1,59 @@
+\documentclass[letterpaper,11pt,leqno]{article}
+\usepackage{paper,math,notes}
+\hypersetup{pdftitle={Problem Set on Optimal Control}}
+\begin{document}
+
+\title{Problem Set on Optimal Control}
+\author{Pascal Michaillat}
+\date{}
+\paperurl{https://pascalmichaillat.org/x/}
+\begin{titlepage}
+\maketitle
+\end{titlepage}
+
+\section*{Problem 1}
+
+Consider the following optimal growth problem: Given initial capital $k_{0}>0$, choose a consumption path $\bc{c_{t}}_{t\ge 0}$ to maximize utility
+\begin{equation*}
+\int_{0}^{\infty}e^{-\r t} \ln{c_{t}}\,dt 
+\end{equation*}
+subject to the law of motion of capital
+\begin{equation*}
+\dot{k}_{t} =f(k_{t}) -c_{t}-\d k_{t}.
+\end{equation*}
+The discount rate $\r>0$, and the production function $f$ satisfies
+\begin{equation*}
+f(k) =a k^{\a},
+\end{equation*}
+ where $\a \in (0,1)$ and $a>0$.
+\begin{enumerate}
+\item Write down the present-value Hamiltonian.
+\item Show that the Euler equation is
+\begin{equation*}
+\frac{\dot{c}_{t}}{c_{t}} =\a a k_{t}^{\a -1} - (\d +\r).
+\end{equation*}
+\item Solve for the steady state of the system.
+\end{enumerate}
+
+\section*{Problem 2}
+
+Consider the following investment problem: Given initial capital $k_{0}$, choose the investment path $\bc{i_{t}} _{t \ge 0}$ to maximize profits
+\begin{equation*}
+\int_{0}^{\infty}e^{-r t}\bs{f(k_{t})-i_{t}-\frac{\c}{2}\cdot\frac{i_{t}^{2}}{k_{t}}}\,dt 
+\end{equation*}
+subject to the law of motion of capital (we assume no capital depreciation)
+\begin{equation*}
+\dot{k}_{t} =i_{t}.
+\end{equation*}
+The interest rate $r>0$, the capital adjustment cost $\c>0$, and the production function $f$ satisfies $f'>0$ and $f''<0$.
+\begin{enumerate}
+\item Write down the current-value Hamiltonian. 
+\item Use the optimality conditions for the current-value Hamiltonian to derive the following differential equations:
+\begin{align*}
+\dot{k}_{t} &=\frac{q_{t}-1}{\c} \cdot k_{t} \\
+\dot{q}_{t} &=r q_{t}-f'(k_{t}) -\frac{1}{2 \c} \cdot (q_{t}-1)^{2}
+\end{align*}
+\item Solve for the steady state.
+\end{enumerate}
+
+\end{document}
