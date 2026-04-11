@@ -50,9 +50,9 @@
 {\oldexp\!\of{#1}}}
 
 % Indicator
-\NewDocumentCommand{\ind}{g}{%
-\IfNoValueTF{#1}{\operatorname{\mathds{1}}}%
-{\,\mathds{1}\of{#1}}}
+\NewDocumentCommand{\ind}{o g}{%
+\IfNoValueTF{#2}{\mathds{1}\IfValueT{#1}{_{#1}}}%
+{\mathds{1}\IfValueT{#1}{_{#1}}\of{#2}}}
 
 % Trace
 \NewDocumentCommand{\tr}{g}{%
