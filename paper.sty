@@ -44,10 +44,10 @@
 % Set spacing between lines
 \usepackage[onehalfspacing]{setspace}
 
-% Set spacing on lines
+% Adjust spacing on lines
 \usepackage{microtype}
 
-% Set spacing in text
+% Adjust spacing in text
 \AtBeginDocument{\frenchspacing}
 
 % ---- Select color scheme ----
@@ -55,6 +55,9 @@
 \usepackage[x11names]{xcolor}
 
 % ---- Format header and footer ----
+
+% Enable advanced programming features
+\usepackage{etoolbox}
 
 % Customize headers and footers
 \usepackage{fancyhdr}
@@ -72,11 +75,12 @@
 % Place centered page number at foot of regular pages
 \fancyfoot[C]{\thepage}
 
-% Place URL and publication information at foot of title page
+% Place URL and publication information at foot of title pages
 \NewDocumentCommand{\paperurl}{o m}{%
 \fancypagestyle{plain}{\fancyfoot[C]{\color{gray}\footnotesize%
 \IfValueT{#1}{Published in \emph{#1}\;\textbullet\;}%
-Available at \url{#2}}}}
+Available at \url{#2}}}%
+\AtBeginEnvironment{titlepage}{\pagestyle{plain}}}
 
 % ---- Format title page ----
 
@@ -91,11 +95,32 @@ Available at \url{#2}}}}
 \setlength{\thanksmarkwidth}{0em}
 \setlength{\thanksmargin}{0em}
 
-% Enable advanced programming features
-\usepackage{etoolbox}
-
 % Eliminate indentation in abstract
-\AtBeginEnvironment{titlepage}{\pagestyle{empty}\setlength{\parindent}{0pt}}
+\AtBeginEnvironment{titlepage}{\setlength{\parindent}{0pt}}
+
+% ---- Format table of contents ----
+
+% Customize table of contents
+\usepackage{tocloft}
+
+% Eliminate "Table of Contents"
+\renewcommand{\contentsname}{}
+
+% Set font size for content
+\renewcommand{\cftsecfont}{\normalfont}
+
+% Set font size for page numbers
+\renewcommand{\cftsecpagefont}{\normalfont}
+
+% Set separator after labels
+\renewcommand{\cftsecaftersnum}{.}
+\renewcommand{\cftsubsecaftersnum}{.}
+
+% Set spacing between dots
+\renewcommand{\cftdotsep}{10}
+
+% Set spacing between sections
+\setlength{\cftbeforesecskip}{0em}
 
 % ---- Format section headings ----
 
@@ -191,9 +216,8 @@ Available at \url{#2}}}}
 \IfValueT{#1}{\textit{#1}.\hspace{1em}}%
 #2}}
 
-% ---- Format equations ----
+% ---- Adjust tolerance for page breaks in equations ----
 
-% Set tolerance for page breaks in multiline equations
 \AtBeginDocument{\allowdisplaybreaks[1]}
 
 % ---- Format lists ----
@@ -257,7 +281,7 @@ Available at \url{#2}}}}
 % Add "Appendix" in front of section label
 \titleformat{\section}{\centering\large\bfseries}{Appendix~\thesection.}{1em}{}}
 
-% ---- Enable hyperlinks  ----
+% ---- Enable hyperlinks ----
 
 \PassOptionsToPackage{hyphens}{url}
 \usepackage[hidelinks, hypertexnames=false, pdfpagemode=UseNone, pdfdisplaydoctitle=true]{hyperref}
