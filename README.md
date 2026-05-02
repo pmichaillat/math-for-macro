@@ -23,15 +23,15 @@ The problem sets are written in LaTeX and compiled to PDF using pdfTeX:
 + `ps3.tex`, `ps3.pdf` - Problem set on differential equations
 + `ps4.tex`, `ps4.pdf` - Cumulative problem set covering all three topics
 
-Solutions to the problems sets are available to instructors [upon request](mailto:pascal.michaillat@gmail.com).
+Solutions to the problems sets are available to instructors upon request.
 
 ## Style files
 
 The repository also contain the LaTeX style files used to format the lecture notes and problem sets:
 
 + `paper.sty` - [Formatting for academic papers](https://github.com/pmichaillat/latex-paper) 
-+ `notes.sty` - Formatting adjustments for lecture notes
 + `math.sty` - [Commands to write math](https://github.com/pmichaillat/latex-math)
++ `exam.sty` - Formatting adjustments for exams and problem sets
 
 ## License
 
